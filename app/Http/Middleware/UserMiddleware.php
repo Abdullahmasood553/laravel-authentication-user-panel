@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserMiddleware
 {
@@ -16,6 +17,10 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+            if(!Auth::check()) {
+                $user = Auth::user();
+                return redirect()->route('login');
+            }
+            return $next($request);
     }
 }
