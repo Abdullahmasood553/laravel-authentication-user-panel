@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <section class=form-login>
+  <section>
       <div class="container">
           <div class="row ">
               <div class="col-md-6 mx-auto">
@@ -34,7 +34,7 @@
 
 
 
-@section('javascript')
+@push('javascript')
 <script>
     $(document).ready(function() {
         $("#loginBtn").click(function(e) {
@@ -88,6 +88,6 @@
           });  
         }); 
 </script>
-@endsection
+@endpush
 
 

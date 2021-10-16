@@ -1,10 +1,9 @@
 @extends('layouts.master')
-
 @section('content')
 
-    <section class=form-login>
-        <div class="container">
-            <div class="row ">
+    <section>
+        <div class="container mt-4">
+            <div class="row">
                 <div class="col-md-6 mx-auto">
                     <div class="card">
                         <div class="card-header bg-dark text-white">
@@ -48,11 +47,10 @@
 
 
 
-@section('javascript')
+@push('javascript')
 <script>
         $(document).ready(function() {
             $('#save_form').on('click', function(e) {
-                alert(e);
                 e.preventDefault();
                 var fname = $("#fname").val();
                 var lname = $("#lname").val();
@@ -80,11 +78,14 @@
                 } else if (data.success) {
                     $('#notifDiv').fadeIn();
                     $('#notifDiv').css('background', 'green');
-                    $('#notifDiv').text('User Registered Successfully.');
+                    $('#notifDiv').text(data.success);
                     setTimeout(() => {
                         $('#notifDiv').fadeOut();
                     }, 3000);
-                    location.reload();
+                    $('[name="fname"]').val('');
+                    $('[name="lname"]').val('');
+                    $('[name="email"]').val('');
+                    $('[name="password"]').val('');
                 } else {
                     $('#notifDiv').fadeIn();
                     $('#notifDiv').css('background', 'red');
@@ -96,12 +97,11 @@
                 $(this).text('Save');
                 $(this).removeAttr('disabled');
                  }.bind($(this))
-                    
                 });
             });
         });
     </script>
-@endsection
+@endpush
 
 
 
